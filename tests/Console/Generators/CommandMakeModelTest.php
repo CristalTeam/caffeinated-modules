@@ -2,10 +2,11 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class CommandMakeModelTest extends BaseTestCase
+final class CommandMakeModelTest extends BaseTestCase
 {
     use MatchesSnapshots;
 
@@ -20,8 +21,8 @@ class CommandMakeModelTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'model', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_model_migration_with_default_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_model_migration_with_default_module_namespace(): void
     {
         $this->artisan('make:module:model', ['slug' => 'model', 'name' => 'DefaultMigrationModel', '--migration' => 'migration']);
 
@@ -37,8 +38,8 @@ class CommandMakeModelTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_model_with_custom_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_model_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomModelNamespace\\');
 
@@ -49,8 +50,8 @@ class CommandMakeModelTest extends BaseTestCase
         $this->assertMatchesSnapshot($file);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_model_with_default_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_model_with_default_module_namespace(): void
     {
         $this->artisan('make:module:model', ['slug' => 'model', 'name' => 'DefaultModel']);
 

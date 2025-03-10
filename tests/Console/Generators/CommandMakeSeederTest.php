@@ -2,10 +2,11 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class CommandMakeSeederTest extends BaseTestCase
+final class CommandMakeSeederTest extends BaseTestCase
 {
     use MatchesSnapshots;
 
@@ -20,8 +21,8 @@ class CommandMakeSeederTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'seeder', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_seeder_with_default_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_seeder_with_default_module_namespace(): void
     {
         $this->artisan('make:module:seeder', ['slug' => 'seeder', 'name' => 'DefaultSeeder']);
 
@@ -30,8 +31,8 @@ class CommandMakeSeederTest extends BaseTestCase
         $this->assertMatchesSnapshot($file);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_seeder_with_custom_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_seeder_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomSeederNamespace\\');
 

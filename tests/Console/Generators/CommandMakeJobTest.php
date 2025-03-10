@@ -2,10 +2,11 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class CommandMakeJobTest extends BaseTestCase
+final class CommandMakeJobTest extends BaseTestCase
 {
     use MatchesSnapshots;
 
@@ -20,8 +21,8 @@ class CommandMakeJobTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'jobs', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_job_with_default_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_job_with_default_module_namespace(): void
     {
         $this->artisan('make:module:job', ['slug' => 'jobs', 'name' => 'DefaultJob']);
 
@@ -30,8 +31,8 @@ class CommandMakeJobTest extends BaseTestCase
         $this->assertMatchesSnapshot($file);
     }
 
-    /** @test */
-    public function it_can_generate_a_new_job_with_custom_module_namespace()
+    #[Test]
+    public function it_can_generate_a_new_job_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomJobsNamespace\\');
 

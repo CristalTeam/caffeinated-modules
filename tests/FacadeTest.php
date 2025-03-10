@@ -2,18 +2,19 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Module;
 
-class FacadeTest extends BaseTestCase
+final class FacadeTest extends BaseTestCase
 {
-    /** @test */
-    public function it_can_work_with_container()
+    #[Test]
+    public function it_can_work_with_container(): void
     {
         $this->assertInstanceOf(\Caffeinated\Modules\RepositoryManager::class, $this->app['modules']);
     }
 
-    /** @test */
-    public function it_can_work_with_facade()
+    #[Test]
+    public function it_can_work_with_facade(): void
     {
         $this->assertSame('Caffeinated\Modules\Facades\Module', (new \ReflectionClass(Module::class))->getName());
     }

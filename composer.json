@@ -21,7 +21,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^10.0",
         "orchestra/testbench": "^4.0",
         "spatie/phpunit-snapshot-assertions": "^2.0"
     },

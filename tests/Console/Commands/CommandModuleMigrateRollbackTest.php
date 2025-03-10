@@ -2,9 +2,10 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Commands;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
-class CommandModuleMigrateRollbackTest extends BaseTestCase
+final class CommandModuleMigrateRollbackTest extends BaseTestCase
 {
     protected $finder;
 
@@ -17,8 +18,8 @@ class CommandModuleMigrateRollbackTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'migrate-rollback', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_migrate_rollback_a_module()
+    #[Test]
+    public function it_can_migrate_rollback_a_module(): void
     {
         $this->assertFalse(\Schema::hasTable('CustomCreateMigrationRollbackTable'));
 

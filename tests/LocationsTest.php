@@ -2,10 +2,11 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-class LocationsTest extends BaseTestCase
+final class LocationsTest extends BaseTestCase
 {
     /**
      * @var \Caffeinated\Modules\Repositories\Repository
@@ -42,8 +43,8 @@ class LocationsTest extends BaseTestCase
         }
     }
 
-    /** @test */
-    public function it_can_create_module_in_non_default_location()
+    #[Test]
+    public function it_can_create_module_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'my-plugin',
@@ -53,11 +54,11 @@ class LocationsTest extends BaseTestCase
 
         $this->assertFileExists(base_path('plugins/MyPlugin/module.json'));
 
-        $this->assertFileNotExists(base_path('modules/MyPlugin/module.json'));
+        $this->assertFileDoesNotExist(base_path('modules/MyPlugin/module.json'));
     }
 
-    /** @test */
-    public function it_can_disable_and_enable_module_in_non_default_location()
+    #[Test]
+    public function it_can_disable_and_enable_module_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'foo-bar',
@@ -87,8 +88,8 @@ class LocationsTest extends BaseTestCase
         $this->assertTrue($this->repository->isEnabled('foo-bar'));
     }
 
-    /** @test */
-    public function it_can_work_with_migrations_in_non_default_location()
+    #[Test]
+    public function it_can_work_with_migrations_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'bar-biz',
@@ -130,8 +131,8 @@ class LocationsTest extends BaseTestCase
         $this->assertFalse(Schema::hasTable('bar_biz_plugin'));
     }
 
-    /** @test */
-    public function it_should_leave_default_location_alone_when_working_with_migrations_in_non_default_location()
+    #[Test]
+    public function it_should_leave_default_location_alone_when_working_with_migrations_in_non_default_location(): void
     {
         // create a module for the *default* location to make
         // sure that when a location is specified, that
@@ -190,8 +191,8 @@ class LocationsTest extends BaseTestCase
         $this->assertTrue(Schema::hasTable('default_location_table'));
     }
 
-    /** @test */
-    public function it_leaves_non_default_locations_alone_when_working_with_default_location()
+    #[Test]
+    public function it_leaves_non_default_locations_alone_when_working_with_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'baz-biz',

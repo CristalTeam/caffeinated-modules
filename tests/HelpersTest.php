@@ -2,7 +2,9 @@
 
 namespace Caffeinated\Modules\Tests;
 
-class HelpersTest extends BaseTestCase
+use PHPUnit\Framework\Attributes\Test;
+
+final class HelpersTest extends BaseTestCase
 {
     protected $finder;
 
@@ -15,14 +17,14 @@ class HelpersTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'helper', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_get_module_path()
+    #[Test]
+    public function it_can_get_module_path(): void
     {
         $this->assertSame(base_path().'/modules/Helper', module_path('helper'));
     }
 
-    /** @test */
-    public function it_can_get_module_path_files()
+    #[Test]
+    public function it_can_get_module_path_files(): void
     {
         $this->assertSame(base_path().'/modules/Helper/Database', module_path('helper', 'Database'));
         $this->assertSame(base_path().'/modules/Helper/Database/Factories', module_path('helper', 'Database/Factories'));
@@ -36,8 +38,8 @@ class HelpersTest extends BaseTestCase
         $this->assertSame(base_path().'/modules/Helper/Routes/web.php', module_path('helper', 'Routes/web.php'));
     }
 
-    /** @test */
-    public function it_can_get_module_class()
+    #[Test]
+    public function it_can_get_module_class(): void
     {
         $this->assertSame('App\Modules\Helper\Database\Factories', module_class('helper', 'Database\\Factories'));
         $this->assertSame('App\Modules\Helper\Database\Migrations', module_class('helper', 'Database\\Migrations'));

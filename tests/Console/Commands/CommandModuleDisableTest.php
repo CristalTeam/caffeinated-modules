@@ -2,9 +2,10 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Commands;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
-class CommandModuleDisableTest extends BaseTestCase
+final class CommandModuleDisableTest extends BaseTestCase
 {
     protected $finder;
 
@@ -17,8 +18,8 @@ class CommandModuleDisableTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'disable', '--quick' => 'quick']);
     }
 
-    /** @test */
-    public function it_can_disable_an_enabled_module()
+    #[Test]
+    public function it_can_disable_an_enabled_module(): void
     {
         $cached = \Module::where('slug', 'disable');
 
@@ -31,8 +32,8 @@ class CommandModuleDisableTest extends BaseTestCase
         $this->assertFalse($cached->toArray()['enabled']);
     }
 
-    /** @test */
-    public function it_can_enable_a_disabled_module()
+    #[Test]
+    public function it_can_enable_a_disabled_module(): void
     {
         $this->artisan('module:disable', ['slug' => 'disable']);
 
