@@ -6,7 +6,7 @@ class HelpersTest extends BaseTestCase
 {
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -51,7 +51,7 @@ class HelpersTest extends BaseTestCase
         $this->assertSame('App\Modules\Helper\Providers', module_class('helper', 'Providers'));
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('helper'));
 

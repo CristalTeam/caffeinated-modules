@@ -6,7 +6,7 @@ class BladeTest extends BaseTestCase
 {
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -44,7 +44,7 @@ class BladeTest extends BaseTestCase
         return trim((string)(view($view)->with($parameters)));
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('blade'));
 
