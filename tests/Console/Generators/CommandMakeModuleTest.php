@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Snapshots\MatchesSnapshots;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
@@ -18,7 +19,7 @@ class CommandMakeModuleTest extends BaseTestCase
         $this->finder = $this->app['files'];
     }
 
-    /** @test */
+    #[Test]
     public function it_can_customize_module_provider()
     {
         $this->app['config']->set("modules.locations.{$this->default}.provider", "CustomServiceProvider");
@@ -29,7 +30,7 @@ class CommandMakeModuleTest extends BaseTestCase
         $this->assertFileExists(module_path('custom', '/Providers/CustomServiceProvider.php'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_module_with_custom_mapping()
     {
         $this->app['config']->set("modules.locations.{$this->default}.mapping", [

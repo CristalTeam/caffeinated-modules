@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Collection;
 
 class RepositoryTest extends BaseTestCase
@@ -28,7 +29,7 @@ class RepositoryTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'RepositoryMod3', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_if_module_is_disabled()
     {
         $this->assertFalse($this->repository->isDisabled('repositorymod1'));
@@ -38,7 +39,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertTrue($this->repository->isDisabled('repositorymod1'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_if_module_is_enabled()
     {
         $this->assertTrue($this->repository->isEnabled('repositorymod1'));
@@ -48,7 +49,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertFalse($this->repository->isEnabled('repositorymod1'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_if_the_module_exists()
     {
         $this->assertTrue($this->repository->exists('repositorymod1'));
@@ -56,13 +57,13 @@ class RepositoryTest extends BaseTestCase
         $this->assertFalse($this->repository->exists('repositorymod4'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_count_the_modules()
     {
         $this->assertSame(3, (int)$this->repository->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_a_collection_of_disabled_modules()
     {
         $this->assertSame(0, (int)$this->repository->disabled()->count());
@@ -72,7 +73,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame(1, (int)$this->repository->disabled()->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_a_collection_of_enabled_modules()
     {
         $this->assertSame(3, (int)$this->repository->enabled()->count());
@@ -82,7 +83,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame(2, (int)$this->repository->enabled()->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_a_module_based_on_where()
     {
         $slug = $this->repository->where('slug', 'repositorymod1');
@@ -108,7 +109,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertCount(8, $name);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_all_the_modules()
     {
         $this->assertCount(3, $this->repository->all());
@@ -116,7 +117,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertInstanceOf(Collection::class, $this->repository->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_correct_module_and_manifest_for_legacy_modules()
     {
         $this->artisan('make:module', ['slug' => 'barbiz', '--quick' => 'quick']);
@@ -140,7 +141,7 @@ class RepositoryTest extends BaseTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_correct_slug_exists_for_legacy_modules()
     {
         $this->artisan('make:module', ['slug' => 'foobar', '--quick' => 'quick']);
@@ -156,7 +157,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertTrue($this->repository->exists('FooBar'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_custom_modules_namespace()
     {
         $this->app['config']->set("modules.locations.{$this->default}.namespace", 'App\\Foo\\Bar\\Baz\\Tests');
@@ -168,19 +169,19 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame('App\Foo\Baz\Bar\Tests', $this->repository->getNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_default_modules_namespace()
     {
         $this->assertSame('App\Modules', $this->repository->getNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_default_modules_path()
     {
         $this->assertSame(base_path() . '/modules', $this->repository->getPath());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_manifest_of_module()
     {
         $manifest = $this->repository->getManifest('repositorymod1');
@@ -191,7 +192,7 @@ class RepositoryTest extends BaseTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_module_path_of_module()
     {
         $path = $this->repository->getModulePath('repositorymod1');
@@ -202,7 +203,7 @@ class RepositoryTest extends BaseTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_property_of_module()
     {
         $this->assertSame('Repositorymod1', $this->repository->get('repositorymod1::name'));
@@ -212,7 +213,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame('This is the description for the Repositorymod3 module.', $this->repository->get('repositorymod3::description'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_the_modules_slugs()
     {
         $this->assertCount(3, $this->repository->slugs());
@@ -222,7 +223,7 @@ class RepositoryTest extends BaseTestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_custom_modules_path_in_runtime_mode()
     {
         $this->repository->setPath(base_path('tests/runtime/modules'));
@@ -233,7 +234,7 @@ class RepositoryTest extends BaseTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_property_of_module()
     {
         $this->assertSame('Repositorymod1', $this->repository->get('repositorymod1::name'));
@@ -251,7 +252,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame('1.3.3.7', $this->repository->get('repositorymod3::version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_sortby_asc_slug_the_modules()
     {
         $sortByAsc = array_keys($this->repository->sortby('slug')->toArray());
@@ -261,7 +262,7 @@ class RepositoryTest extends BaseTestCase
         $this->assertSame($sortByAsc[2], 'Repositorymod3');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_sortby_desc_slug_the_modules()
     {
         $sortByAsc = array_keys($this->repository->sortbyDesc('slug')->toArray());
@@ -272,9 +273,9 @@ class RepositoryTest extends BaseTestCase
     }
 
     /**
-     * @test
      * @expectedException \Exception
      */
+    #[Test]
     public function it_will_throw_exception_by_invalid_json_manifest_file()
     {
         file_put_contents(realpath(module_path()) . '/Repositorymod1/module.json', 'invalidjsonformat');
@@ -283,9 +284,9 @@ class RepositoryTest extends BaseTestCase
     }
 
     /**
-     * @test
      * @expectedException \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    #[Test]
     public function it_will_throw_file_not_found_exception_by_unknown_module()
     {
         $manifest = $this->repository->getManifest('unknown');

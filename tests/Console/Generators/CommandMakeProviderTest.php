@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
@@ -20,7 +21,7 @@ class CommandMakeProviderTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'provider', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_provider_with_default_module_namespace()
     {
         $this->artisan('make:module:provider', ['slug' => 'provider', 'name' => 'DefaultProvider']);
@@ -30,7 +31,7 @@ class CommandMakeProviderTest extends BaseTestCase
         $this->assertMatchesSnapshot($file);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_provider_with_custom_module_namespace()
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomProviderNamespace\\');

@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Generators;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
@@ -20,7 +21,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'migration', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_migration_with_custom_module_namespace()
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration']);
@@ -33,7 +34,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_migration_with_default_module_namespace()
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'DefaultMigration']);
@@ -46,7 +47,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_migration_with_table_create()
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--create' => 'CustomCreateMigrationTable']);
@@ -59,7 +60,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_migration_with_table_create_and_migrate()
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--create' => 'CustomCreateMigrationTable', '--table' => 'CustomTableMigrationTable']);
@@ -72,7 +73,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_a_new_migration_with_table_migrate()
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--table' => 'CustomTableMigrationTable']);
