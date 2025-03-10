@@ -5,7 +5,7 @@ namespace Caffeinated\Modules\Tests;
 use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Collection;
 
-class RepositoryTest extends BaseTestCase
+final class RepositoryTest extends BaseTestCase
 {
     protected $finder;
 

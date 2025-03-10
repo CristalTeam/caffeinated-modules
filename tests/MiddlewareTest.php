@@ -4,7 +4,7 @@ namespace Caffeinated\Modules\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 
-class MiddlewareTest extends BaseTestCase
+final class MiddlewareTest extends BaseTestCase
 {
     protected $finder;
 

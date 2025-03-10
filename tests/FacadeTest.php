@@ -5,7 +5,7 @@ namespace Caffeinated\Modules\Tests;
 use PHPUnit\Framework\Attributes\Test;
 use Module;
 
-class FacadeTest extends BaseTestCase
+final class FacadeTest extends BaseTestCase
 {
     #[Test]
     public function it_can_work_with_container(): void
