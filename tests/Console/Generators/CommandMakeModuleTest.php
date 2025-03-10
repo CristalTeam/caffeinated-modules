@@ -20,7 +20,7 @@ class CommandMakeModuleTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_customize_module_provider()
+    public function it_can_customize_module_provider(): void
     {
         $this->app['config']->set("modules.locations.{$this->default}.provider", "CustomServiceProvider");
 
@@ -31,7 +31,7 @@ class CommandMakeModuleTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_module_with_custom_mapping()
+    public function it_can_generate_module_with_custom_mapping(): void
     {
         $this->app['config']->set("modules.locations.{$this->default}.mapping", [
             'Config'              => 'config',

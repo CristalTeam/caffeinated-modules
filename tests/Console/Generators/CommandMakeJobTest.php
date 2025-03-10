@@ -22,7 +22,7 @@ class CommandMakeJobTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_job_with_default_module_namespace()
+    public function it_can_generate_a_new_job_with_default_module_namespace(): void
     {
         $this->artisan('make:module:job', ['slug' => 'jobs', 'name' => 'DefaultJob']);
 
@@ -32,7 +32,7 @@ class CommandMakeJobTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_job_with_custom_module_namespace()
+    public function it_can_generate_a_new_job_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomJobsNamespace\\');
 

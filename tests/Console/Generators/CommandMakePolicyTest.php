@@ -22,7 +22,7 @@ class CommandMakePolicyTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_policy_with_default_module_namespace()
+    public function it_can_generate_a_new_policy_with_default_module_namespace(): void
     {
         $this->artisan('make:module:policy', ['slug' => 'policy', 'name' => 'DefaultPolicy']);
 
@@ -32,7 +32,7 @@ class CommandMakePolicyTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_policy_with_custom_module_namespace()
+    public function it_can_generate_a_new_policy_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomPolicyNamespace\\');
 

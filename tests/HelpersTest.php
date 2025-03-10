@@ -18,13 +18,13 @@ class HelpersTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_get_module_path()
+    public function it_can_get_module_path(): void
     {
         $this->assertSame(base_path().'/modules/Helper', module_path('helper'));
     }
 
     #[Test]
-    public function it_can_get_module_path_files()
+    public function it_can_get_module_path_files(): void
     {
         $this->assertSame(base_path().'/modules/Helper/Database', module_path('helper', 'Database'));
         $this->assertSame(base_path().'/modules/Helper/Database/Factories', module_path('helper', 'Database/Factories'));
@@ -39,7 +39,7 @@ class HelpersTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_get_module_class()
+    public function it_can_get_module_class(): void
     {
         $this->assertSame('App\Modules\Helper\Database\Factories', module_class('helper', 'Database\\Factories'));
         $this->assertSame('App\Modules\Helper\Database\Migrations', module_class('helper', 'Database\\Migrations'));
