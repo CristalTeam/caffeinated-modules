@@ -9,7 +9,7 @@ abstract class BaseTestCase extends OrchestraTestCase
 {
     public $default = 'app';
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
