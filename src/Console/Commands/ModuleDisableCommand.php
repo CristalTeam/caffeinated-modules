@@ -3,29 +3,18 @@
 namespace Caffeinated\Modules\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class ModuleDisableCommand extends Command
 {
     /**
-     * The console command name.
+     * The command signature.
      *
      * @var string
      */
-    protected $name = 'module:disable';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Disable a module';
+    protected $signature = 'module:disable {slug : Module slug.} {--location= : Which modules location to use.}';
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -34,38 +23,13 @@ class ModuleDisableCommand extends Command
 
         if ($repository->isEnabled($slug)) {
             $repository->disable($slug);
-
+            
             $module = $repository->where('slug', $slug);
-
             event($slug.'.module.disabled', [$module, null]);
-
+            
             $this->info('Module was disabled successfully.');
         } else {
             $this->comment('Module is already disabled.');
         }
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            ['slug', InputArgument::REQUIRED, 'Module slug.'],
-        ];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['location', null, InputOption::VALUE_OPTIONAL, 'Which modules location to use.'],
-        ];
     }
 }
