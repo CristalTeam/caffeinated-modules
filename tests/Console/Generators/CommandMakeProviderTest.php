@@ -22,7 +22,7 @@ class CommandMakeProviderTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_provider_with_default_module_namespace()
+    public function it_can_generate_a_new_provider_with_default_module_namespace(): void
     {
         $this->artisan('make:module:provider', ['slug' => 'provider', 'name' => 'DefaultProvider']);
 
@@ -32,7 +32,7 @@ class CommandMakeProviderTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_provider_with_custom_module_namespace()
+    public function it_can_generate_a_new_provider_with_custom_module_namespace(): void
     {
         $this->app['config']->set("modules.locations.$this->default.namespace", 'App\\CustomProviderNamespace\\');
 

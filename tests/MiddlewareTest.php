@@ -18,7 +18,7 @@ class MiddlewareTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_check_if_it_has_invalid_module_with_identify_module_middleware()
+    public function it_can_check_if_it_has_invalid_module_with_identify_module_middleware(): void
     {
         $this->app['router']->aliasMiddleware('module', \Caffeinated\Modules\Middleware\IdentifyModule::class);
 
@@ -43,7 +43,7 @@ class MiddlewareTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_check_if_it_has_no_identify_module_middleware()
+    public function it_can_check_if_it_has_no_identify_module_middleware(): void
     {
         $this->app['router']->get('has-no-identify-middleware', fn() => session()->get('module'));
 
@@ -55,7 +55,7 @@ class MiddlewareTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_check_if_it_has_valid_module_with_identify_module_middleware()
+    public function it_can_check_if_it_has_valid_module_with_identify_module_middleware(): void
     {
         $this->app['router']->aliasMiddleware('module', \Caffeinated\Modules\Middleware\IdentifyModule::class);
 

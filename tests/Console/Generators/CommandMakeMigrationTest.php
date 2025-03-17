@@ -22,7 +22,7 @@ class CommandMakeMigrationTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_migration_with_custom_module_namespace()
+    public function it_can_generate_a_new_migration_with_custom_module_namespace(): void
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration']);
 
@@ -35,7 +35,7 @@ class CommandMakeMigrationTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_migration_with_default_module_namespace()
+    public function it_can_generate_a_new_migration_with_default_module_namespace(): void
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'DefaultMigration']);
 
@@ -48,7 +48,7 @@ class CommandMakeMigrationTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_migration_with_table_create()
+    public function it_can_generate_a_new_migration_with_table_create(): void
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--create' => 'CustomCreateMigrationTable']);
 
@@ -61,7 +61,7 @@ class CommandMakeMigrationTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_migration_with_table_create_and_migrate()
+    public function it_can_generate_a_new_migration_with_table_create_and_migrate(): void
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--create' => 'CustomCreateMigrationTable', '--table' => 'CustomTableMigrationTable']);
 
@@ -74,7 +74,7 @@ class CommandMakeMigrationTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_generate_a_new_migration_with_table_migrate()
+    public function it_can_generate_a_new_migration_with_table_migrate(): void
     {
         $this->artisan('make:module:migration', ['slug' => 'migration', 'name' => 'CustomMigration', '--table' => 'CustomTableMigrationTable']);
 

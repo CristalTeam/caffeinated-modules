@@ -19,7 +19,7 @@ class CommandModuleDisableTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_disable_an_enabled_module()
+    public function it_can_disable_an_enabled_module(): void
     {
         $cached = \Module::where('slug', 'disable');
 
@@ -33,7 +33,7 @@ class CommandModuleDisableTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_enable_a_disabled_module()
+    public function it_can_enable_a_disabled_module(): void
     {
         $this->artisan('module:disable', ['slug' => 'disable']);
 
