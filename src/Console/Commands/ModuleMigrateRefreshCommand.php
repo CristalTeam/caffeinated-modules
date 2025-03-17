@@ -5,31 +5,27 @@ namespace Caffeinated\Modules\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Caffeinated\Modules\Repositories\Repository;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class ModuleMigrateRefreshCommand extends Command
 {
     use ConfirmableTrait;
 
     /**
-     * The console command name.
+     * The command signature.
      *
      * @var string
      */
-    protected $name = 'module:migrate:refresh';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Reset and re-run all migrations for a specific or all modules';
+    protected $signature = 'module:migrate:refresh {slug? : Module slug.}
+                            {--database= : The database connection to use.}
+                            {--force : Force the operation to run while in production.}
+                            {--pretend : Dump the SQL queries that would be run.}
+                            {--seed : Indicates if the seed task should be re-run.}
+                            {--location= : Which modules location to use.}';
 
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -55,7 +51,8 @@ class ModuleMigrateRefreshCommand extends Command
     /**
      * Run the module seeder command.
      *
-     * @param string $database
+     * @param string|null $slug
+     * @param string|null $database
      */
     protected function runSeeder($slug = null, $database = null)
     {
@@ -65,6 +62,11 @@ class ModuleMigrateRefreshCommand extends Command
         ]);
     }
 
+    /**
+     * Reset and rerun migrations for the module.
+     *
+     * @param Repository $repository
+     */
     protected function resetMigrations(Repository $repository)
     {
         $slug = $this->argument('slug');
@@ -87,41 +89,12 @@ class ModuleMigrateRefreshCommand extends Command
             $this->runSeeder($slug, $this->option('database'));
         }
 
-        if (isset($slug)) {
+        if ($slug) {
             $module = $repository->where('slug', $slug);
-
             event($slug . '.module.refreshed', [$module, $this->option()]);
-
             $this->info('Module has been refreshed.');
-        }
-        else {
+        } else {
             $this->info('All modules have been refreshed.');
         }
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [['slug', InputArgument::OPTIONAL, 'Module slug.']];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['database', null, InputOption::VALUE_OPTIONAL, 'The database connection to use.'],
-            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run while in production.'],
-            ['pretend', null, InputOption::VALUE_NONE, 'Dump the SQL queries that would be run.'],
-            ['seed', null, InputOption::VALUE_NONE, 'Indicates if the seed task should be re-run.'],
-            ['location', null, InputOption::VALUE_OPTIONAL, 'Which modules location to use.'],
-        ];
     }
 }

@@ -3,28 +3,18 @@
 namespace Caffeinated\Modules\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
 
 class ModuleOptimizeCommand extends Command
 {
     /**
-     * The console command name.
+     * The command signature.
      *
      * @var string
      */
-    protected $name = 'module:optimize';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Optimize the module cache for better performance';
+    protected $signature = 'module:optimize {--location= : Which modules location to use.}';
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -44,17 +34,5 @@ class ModuleOptimizeCommand extends Command
                 event('modules.optimized', [$repository->all()]);
             }
         }
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['location', null, InputOption::VALUE_OPTIONAL, 'Which modules location to use.'],
-        ];
     }
 }

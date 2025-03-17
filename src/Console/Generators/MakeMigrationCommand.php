@@ -48,6 +48,6 @@ class MakeMigrationCommand extends Command
         $options['--path'] = str_replace(realpath(base_path()), '', realpath($modulePath));
         $options['--path'] = ltrim($options['--path'], '/');
 
-        return $this->call('make:migration', array_merge($arguments, $options));
+        $this->call('make:migration', array_merge($arguments, $options));
     }
 }
