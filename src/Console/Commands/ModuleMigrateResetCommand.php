@@ -106,7 +106,7 @@ class ModuleMigrateResetCommand extends Command
                     continue;
                 }
 
-                $this->runDown($files[$migration], (object) ["migration" => $migration]);
+                 $this->runDown($files[$migration], (object) ["migration" => $migration]);
             }
         }
     }

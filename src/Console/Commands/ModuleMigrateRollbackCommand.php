@@ -8,31 +8,27 @@ use Caffeinated\Modules\RepositoryManager;
 use Illuminate\Database\Migrations\Migrator;
 use Caffeinated\Modules\Traits\MigrationTrait;
 use Caffeinated\Modules\Repositories\Repository;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class ModuleMigrateRollbackCommand extends Command
 {
     use MigrationTrait, ConfirmableTrait;
 
     /**
-     * The console command name.
+     * The command signature.
      *
      * @var string
      */
-    protected $name = 'module:migrate:rollback';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Rollback the last database migrations for a specific or all modules';
+    protected $signature = 'module:migrate:rollback {slug? : Module slug.}
+                            {--database= : The database connection to use.}
+                            {--force : Force the operation to run while in production.}
+                            {--pretend : Dump the SQL queries that would be run.}
+                            {--step= : The number of migrations to be reverted.}
+                            {--location= : Which modules location to use.}';
 
     /**
      * The migrator instance.
      *
-     * @var \Illuminate\Database\Migrations\Migrator
+     * @var Migrator
      */
     protected $migrator;
 
@@ -43,22 +39,16 @@ class ModuleMigrateRollbackCommand extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @param Migrator $migrator
-     * @param RepositoryManager  $module
      */
     public function __construct(Migrator $migrator, RepositoryManager $module)
     {
         parent::__construct();
-
         $this->migrator = $migrator;
         $this->module   = $module;
     }
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -72,18 +62,14 @@ class ModuleMigrateRollbackCommand extends Command
         $paths      = $this->getMigrationPaths($repository);
 
         $this->migrator->setOutput($this->output)->rollback(
-            $paths, ['pretend' => $this->option('pretend'), 'step' => (int)$this->option('step')]
+            $paths, ['pretend' => $this->option('pretend'), 'step' => (int) $this->option('step')]
         );
     }
 
     /**
      * Get all of the migration paths.
-     *
-     * @param \Caffeinated\Modules\Repositories\Repository $repository
-     *
-     * @return array
      */
-    protected function getMigrationPaths(Repository $repository)
+    protected function getMigrationPaths(Repository $repository): array
     {
         $slug  = $this->argument('slug');
         $paths = [];
@@ -97,31 +83,5 @@ class ModuleMigrateRollbackCommand extends Command
         }
 
         return $paths;
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [['slug', InputArgument::OPTIONAL, 'Module slug.']];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['database', null, InputOption::VALUE_OPTIONAL, 'The database connection to use.'],
-            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run while in production.'],
-            ['pretend', null, InputOption::VALUE_NONE, 'Dump the SQL queries that would be run.'],
-            ['step', null, InputOption::VALUE_OPTIONAL, 'The number of migrations to be reverted.'],
-            ['location', null, InputOption::VALUE_OPTIONAL, 'Which modules location to use.'],
-        ];
     }
 }
