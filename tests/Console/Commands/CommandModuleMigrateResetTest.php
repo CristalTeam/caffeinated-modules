@@ -8,7 +8,7 @@ class CommandModuleMigrateResetTest extends BaseTestCase
 {
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -33,7 +33,7 @@ class CommandModuleMigrateResetTest extends BaseTestCase
         $this->assertFalse(\Schema::hasTable('CustomCreateMigrationResetTable'));
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('migrate-reset'));
 

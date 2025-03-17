@@ -6,7 +6,7 @@ class MiddlewareTest extends BaseTestCase
 {
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -77,7 +77,7 @@ class MiddlewareTest extends BaseTestCase
         );
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('middleware'));
 
