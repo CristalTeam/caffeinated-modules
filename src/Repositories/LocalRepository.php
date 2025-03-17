@@ -26,7 +26,7 @@ class LocalRepository extends Repository
         $slugs = collect();
 
         $this->all()->each(function ($item, $key) use ($slugs): void {
-            $slugs->push(strtolower($item['slug']));
+            $slugs->push(strtolower((string) $item['slug']));
         });
 
         return $slugs;
@@ -257,7 +257,7 @@ class LocalRepository extends Repository
         });
 
         $modules->each(function ($module) {
-            $module->put('id', crc32($module->get('slug')));
+            $module->put('id', crc32((string) $module->get('slug')));
 
             if (!$module->has('enabled')) {
                 $module->put('enabled', config("modules.locations.$this->location.enabled", true));

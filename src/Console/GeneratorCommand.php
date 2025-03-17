@@ -33,7 +33,7 @@ abstract class GeneratorCommand extends LaravelGeneratorCommand
         $name = str_replace('/', '\\', $name);
 
         return $this->qualifyClass(
-            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
+            $this->getDefaultNamespace(trim((string) $rootNamespace, '\\')).'\\'.$name
         );
     }
 
@@ -57,7 +57,7 @@ abstract class GeneratorCommand extends LaravelGeneratorCommand
         $module = Module::location($location)->where('slug', $slug);
 
         // take everything after the module name in the given path (ignoring case)
-        $key = array_search(strtolower($module['basename']), explode('\\', strtolower($name)));
+        $key = array_search(strtolower((string) $module['basename']), explode('\\', strtolower($name)));
 
         if ($key === false) {
             $newPath = str_replace('\\', '/', $name);
