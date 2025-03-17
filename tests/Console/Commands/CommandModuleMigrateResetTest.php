@@ -5,7 +5,7 @@ namespace Caffeinated\Modules\Tests\Commands\Commands;
 use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
-class CommandModuleMigrateResetTest extends BaseTestCase
+final class CommandModuleMigrateResetTest extends BaseTestCase
 {
     protected $finder;
 

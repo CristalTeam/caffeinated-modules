@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class CommandMakeMigrationTest extends BaseTestCase
+final class CommandMakeMigrationTest extends BaseTestCase
 {
     use MatchesSnapshots;
 

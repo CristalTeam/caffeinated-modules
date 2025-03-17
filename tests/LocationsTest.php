@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-class LocationsTest extends BaseTestCase
+final class LocationsTest extends BaseTestCase
 {
     /**
      * @var \Caffeinated\Modules\Repositories\Repository

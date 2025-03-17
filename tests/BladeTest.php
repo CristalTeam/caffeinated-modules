@@ -4,7 +4,7 @@ namespace Caffeinated\Modules\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 
-class BladeTest extends BaseTestCase
+final class BladeTest extends BaseTestCase
 {
     protected $finder;
 
