@@ -56,7 +56,7 @@ abstract class Repository implements RepositoryContract
         try {
             $collection = collect($this->files->directories($path));
 
-            $basenames = $collection->map(fn($item, $key) => basename($item));
+            $basenames = $collection->map(fn($item, $key) => basename((string) $item));
 
             return $basenames;
         } catch (\InvalidArgumentException) {
@@ -151,6 +151,6 @@ abstract class Repository implements RepositoryContract
      */
     public function getNamespace()
     {
-        return rtrim($this->config->get("modules.locations.$this->location.namespace"), '/\\');
+        return rtrim((string) $this->config->get("modules.locations.$this->location.namespace"), '/\\');
     }
 }
