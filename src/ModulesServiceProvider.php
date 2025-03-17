@@ -40,9 +40,7 @@ class ModulesServiceProvider extends ServiceProvider
         $this->app->register(GeneratorServiceProvider::class);
         $this->app->register(BladeServiceProvider::class);
 
-        $this->app->singleton('modules', function ($app) {
-            return new RepositoryManager($app);
-        });
+        $this->app->singleton('modules', fn($app) => new RepositoryManager($app));
     }
 
     /**

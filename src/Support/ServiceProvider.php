@@ -28,7 +28,7 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     protected function addMiddleware($middleware)
     {
-        $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
+        $kernel = $this->app[\Illuminate\Contracts\Http\Kernel::class];
 
         if (is_array($middleware)) {
             foreach ($middleware as $ware) {

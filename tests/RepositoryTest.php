@@ -125,9 +125,9 @@ class RepositoryTest extends BaseTestCase
         // https://github.com/caffeinated/modules/pull/224
         rename(realpath(module_path('barbiz')), realpath(module_path()) . '/BarBiz');
         
-        file_put_contents(realpath(module_path()) . '/BarBiz/module.json', json_encode(array(
+        file_put_contents(realpath(module_path()) . '/BarBiz/module.json', json_encode([
             'name' => 'BarBiz', 'slug' => 'BarBiz', 'version' => '1.0', 'description' => '',
-        ), JSON_PRETTY_PRINT));
+        ], JSON_PRETTY_PRINT));
 
         $this->assertSame(
             '{"name":"BarBiz","slug":"BarBiz","version":"1.0","description":""}',
@@ -149,9 +149,9 @@ class RepositoryTest extends BaseTestCase
         // https://github.com/caffeinated/modules/pull/279
         // https://github.com/caffeinated/modules/pull/349
         rename(realpath(module_path('foobar')), realpath(module_path()) . '/FooBar');
-        file_put_contents(realpath(module_path()) . '/FooBar/module.json', json_encode(array(
+        file_put_contents(realpath(module_path()) . '/FooBar/module.json', json_encode([
             'name' => 'FooBar', 'slug' => 'FooBar', 'version' => '1.0', 'description' => '',
-        ), JSON_PRETTY_PRINT));
+        ], JSON_PRETTY_PRINT));
 
         $this->assertTrue($this->repository->exists('FooBar'));
     }
@@ -217,7 +217,7 @@ class RepositoryTest extends BaseTestCase
     {
         $this->assertCount(3, $this->repository->slugs());
 
-        $this->repository->slugs()->each(function ($key, $value) {
+        $this->repository->slugs()->each(function ($key, $value): void {
             $this->assertSame('repositorymod' . ($value + 1), $key);
         });
     }

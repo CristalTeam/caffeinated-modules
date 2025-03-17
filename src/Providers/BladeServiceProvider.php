@@ -24,14 +24,10 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
-            $bladeCompiler->directive('module', function ($slug) {
-                return "<?php if (Module::exists({$slug}) && Module::isEnabled({$slug})): ?>";
-            });
+        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler): void {
+            $bladeCompiler->directive('module', fn($slug) => "<?php if (Module::exists({$slug}) && Module::isEnabled({$slug})): ?>");
 
-            $bladeCompiler->directive('endmodule', function () {
-                return '<?php endif; ?>';
-            });
+            $bladeCompiler->directive('endmodule', fn() => '<?php endif; ?>');
         });
     }
 }

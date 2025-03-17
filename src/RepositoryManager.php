@@ -45,12 +45,12 @@ class RepositoryManager
             $repository = $this->repository($location);
             $modules    = $repository->enabled();
 
-            $modules->each(function ($module) use ($repository) {
+            $modules->each(function ($module) use ($repository): void {
                 try {
                     $this->registerServiceProvider($repository, $module);
 
                     $this->autoloadFiles($module);
-                } catch (ModuleNotFoundException $e) {
+                } catch (ModuleNotFoundException) {
                     //
                 }
             });
