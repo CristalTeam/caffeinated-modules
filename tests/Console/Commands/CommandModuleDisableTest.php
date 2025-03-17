@@ -5,7 +5,7 @@ namespace Caffeinated\Modules\Tests\Commands\Commands;
 use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
-class CommandModuleDisableTest extends BaseTestCase
+final class CommandModuleDisableTest extends BaseTestCase
 {
     protected $finder;
 
