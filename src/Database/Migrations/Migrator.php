@@ -11,11 +11,6 @@ use Illuminate\Support\Arr;
 class Migrator extends BaseMigrator
 {
     /**
-     * @var string
-     */
-    protected $table;
-
-    /**
      * Create a new migrator instance.
      *
      * @param  string                                                        $table
@@ -23,13 +18,11 @@ class Migrator extends BaseMigrator
      * @param  \Illuminate\Database\ConnectionResolverInterface              $resolver
      * @param  \Illuminate\Filesystem\Filesystem                             $files
      */
-    public function __construct($table,
+    public function __construct(protected $table,
                                 MigrationRepositoryInterface $repository,
                                 Resolver $resolver,
                                 Filesystem $files)
     {
-        $this->table = $table;
-
         parent::__construct($repository, $resolver, $files);
     }
 

@@ -36,9 +36,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerDisableCommand()
     {
-        $this->app->singleton('command.module.disable', function () {
-            return new \Caffeinated\Modules\Console\Commands\ModuleDisableCommand();
-        });
+        $this->app->singleton('command.module.disable', fn() => new \Caffeinated\Modules\Console\Commands\ModuleDisableCommand());
 
         $this->commands('command.module.disable');
     }
@@ -48,9 +46,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerEnableCommand()
     {
-        $this->app->singleton('command.module.enable', function () {
-            return new \Caffeinated\Modules\Console\Commands\ModuleEnableCommand();
-        });
+        $this->app->singleton('command.module.enable', fn() => new \Caffeinated\Modules\Console\Commands\ModuleEnableCommand());
 
         $this->commands('command.module.enable');
     }
@@ -60,9 +56,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerListCommand()
     {
-        $this->app->singleton('command.module.list', function ($app) {
-            return new \Caffeinated\Modules\Console\Commands\ModuleListCommand($app['modules']);
-        });
+        $this->app->singleton('command.module.list', fn($app) => new \Caffeinated\Modules\Console\Commands\ModuleListCommand($app['modules']));
 
         $this->commands('command.module.list');
     }
@@ -72,9 +66,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerMigrateCommand()
     {
-        $this->app->singleton('command.module.migrate', function ($app) {
-            return new \Caffeinated\Modules\Console\Commands\ModuleMigrateCommand($app['migrator'], $app['modules']);
-        });
+        $this->app->singleton('command.module.migrate', fn($app) => new \Caffeinated\Modules\Console\Commands\ModuleMigrateCommand($app['migrator'], $app['modules']));
 
         $this->commands('command.module.migrate');
     }
@@ -84,9 +76,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerMigrateRefreshCommand()
     {
-        $this->app->singleton('command.module.migrate.refresh', function () {
-            return new \Caffeinated\Modules\Console\Commands\ModuleMigrateRefreshCommand();
-        });
+        $this->app->singleton('command.module.migrate.refresh', fn() => new \Caffeinated\Modules\Console\Commands\ModuleMigrateRefreshCommand());
 
         $this->commands('command.module.migrate.refresh');
     }
@@ -96,9 +86,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerMigrateResetCommand()
     {
-        $this->app->singleton('command.module.migrate.reset', function ($app) {
-            return new \Caffeinated\Modules\Console\Commands\ModuleMigrateResetCommand($app['modules'], $app['files'], $app['migrator']);
-        });
+        $this->app->singleton('command.module.migrate.reset', fn($app) => new \Caffeinated\Modules\Console\Commands\ModuleMigrateResetCommand($app['modules'], $app['files'], $app['migrator']));
 
         $this->commands('command.module.migrate.reset');
     }
@@ -125,9 +113,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerOptimizeCommand()
     {
-        $this->app->singleton('command.module.optimize', function () {
-            return new \Caffeinated\Modules\Console\Commands\ModuleOptimizeCommand();
-        });
+        $this->app->singleton('command.module.optimize', fn() => new \Caffeinated\Modules\Console\Commands\ModuleOptimizeCommand());
 
         $this->commands('command.module.optimize');
     }
@@ -137,9 +123,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerSeedCommand()
     {
-        $this->app->singleton('command.module.seed', function ($app) {
-            return new \Caffeinated\Modules\Console\Commands\ModuleSeedCommand($app['modules']);
-        });
+        $this->app->singleton('command.module.seed', fn($app) => new \Caffeinated\Modules\Console\Commands\ModuleSeedCommand($app['modules']));
 
         $this->commands('command.module.seed');
     }

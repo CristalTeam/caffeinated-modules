@@ -34,9 +34,7 @@ class GeneratorServiceProvider extends ServiceProvider
         ];
 
         foreach ($generators as $slug => $class) {
-            $this->app->singleton($slug, function ($app) use ($slug, $class) {
-                return $app[$class];
-            });
+            $this->app->singleton($slug, fn($app) => $app[$class]);
 
             $this->commands($slug);
         }

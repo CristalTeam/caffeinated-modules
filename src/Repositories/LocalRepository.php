@@ -25,7 +25,7 @@ class LocalRepository extends Repository
     {
         $slugs = collect();
 
-        $this->all()->each(function ($item, $key) use ($slugs) {
+        $this->all()->each(function ($item, $key) use ($slugs): void {
             $slugs->push(strtolower($item['slug']));
         });
 
@@ -105,7 +105,7 @@ class LocalRepository extends Repository
      */
     public function get($property, $default = null)
     {
-        list($slug, $key) = explode('::', $property);
+        [$slug, $key] = explode('::', $property);
 
         $module = $this->where('slug', $slug);
 
@@ -122,7 +122,7 @@ class LocalRepository extends Repository
      */
     public function set($property, $value)
     {
-        list($slug, $key) = explode('::', $property);
+        [$slug, $key] = explode('::', $property);
 
         $cachePath = $this->getCachePath();
         $cache = $this->getCache();
@@ -248,7 +248,7 @@ class LocalRepository extends Repository
         $basenames = $this->getAllBasenames();
         $modules   = collect();
 
-        $basenames->each(function ($module, $key) use ($modules, $cache) {
+        $basenames->each(function ($module, $key) use ($modules, $cache): void {
             $basename = collect(['basename' => $module]);
             $temp     = $basename->merge(collect($cache->get($module)));
             $manifest = $temp->merge(collect($this->getManifest($module)));

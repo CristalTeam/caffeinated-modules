@@ -56,12 +56,10 @@ abstract class Repository implements RepositoryContract
         try {
             $collection = collect($this->files->directories($path));
 
-            $basenames = $collection->map(function ($item, $key) {
-                return basename($item);
-            });
+            $basenames = $collection->map(fn($item, $key) => basename($item));
 
             return $basenames;
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             return collect([]);
         }
     }

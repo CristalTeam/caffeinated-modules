@@ -37,7 +37,7 @@ class MakeMigrationCommand extends Command
         $option = $this->option();
         $options = [];
 
-        array_walk($option, function (&$value, $key) use (&$options) {
+        array_walk($option, function (&$value, $key) use (&$options): void {
             $options['--' . $key] = $value;
         });
 
