@@ -44,7 +44,7 @@ class LocationsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_create_module_in_non_default_location()
+    public function it_can_create_module_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'my-plugin',
@@ -58,7 +58,7 @@ class LocationsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_disable_and_enable_module_in_non_default_location()
+    public function it_can_disable_and_enable_module_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'foo-bar',
@@ -89,7 +89,7 @@ class LocationsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_work_with_migrations_in_non_default_location()
+    public function it_can_work_with_migrations_in_non_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'bar-biz',
@@ -132,7 +132,7 @@ class LocationsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_should_leave_default_location_alone_when_working_with_migrations_in_non_default_location()
+    public function it_should_leave_default_location_alone_when_working_with_migrations_in_non_default_location(): void
     {
         // create a module for the *default* location to make
         // sure that when a location is specified, that
@@ -192,7 +192,7 @@ class LocationsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_leaves_non_default_locations_alone_when_working_with_default_location()
+    public function it_leaves_non_default_locations_alone_when_working_with_default_location(): void
     {
         $this->artisan('make:module', [
             'slug' => 'baz-biz',

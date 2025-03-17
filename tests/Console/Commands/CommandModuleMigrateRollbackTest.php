@@ -19,7 +19,7 @@ class CommandModuleMigrateRollbackTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_migrate_rollback_a_module()
+    public function it_can_migrate_rollback_a_module(): void
     {
         $this->assertFalse(\Schema::hasTable('CustomCreateMigrationRollbackTable'));
 

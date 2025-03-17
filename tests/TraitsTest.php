@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\Test;
 class TraitsTest extends BaseTestCase
 {
     #[Test]
-    public function it_can_check_if_dummy_model_with_trait_has_traits()
+    public function it_can_check_if_dummy_model_with_trait_has_traits(): void
     {
         $with = new DummyModelWithTraits;
 
@@ -17,7 +17,7 @@ class TraitsTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_check_if_dummy_model_without_traits_has_no_traits()
+    public function it_can_check_if_dummy_model_without_traits_has_no_traits(): void
     {
         $without = new DummyModelWithoutTraits;
 
