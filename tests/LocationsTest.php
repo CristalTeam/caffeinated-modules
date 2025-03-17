@@ -53,7 +53,7 @@ class LocationsTest extends BaseTestCase
 
         $this->assertFileExists(base_path('plugins/MyPlugin/module.json'));
 
-        $this->assertFileNotExists(base_path('modules/MyPlugin/module.json'));
+        $this->assertFileDoesNotExist(base_path('modules/MyPlugin/module.json'));
     }
 
     /** @test */
