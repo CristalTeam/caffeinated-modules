@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Collection;
 
@@ -278,6 +279,8 @@ final class RepositoryTest extends BaseTestCase
     #[Test]
     public function it_will_throw_exception_by_invalid_json_manifest_file(): void
     {
+        $this->expectException(\Exception::class);
+
         file_put_contents(realpath(module_path()) . '/Repositorymod1/module.json', 'invalidjsonformat');
 
         $manifest = $this->repository->getManifest('repositorymod1');
@@ -289,6 +292,8 @@ final class RepositoryTest extends BaseTestCase
     #[Test]
     public function it_will_throw_file_not_found_exception_by_unknown_module(): void
     {
+        $this->expectException(FileNotFoundException::class);
+        
         $manifest = $this->repository->getManifest('unknown');
     }
 
