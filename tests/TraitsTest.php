@@ -4,7 +4,7 @@ namespace Caffeinated\Modules\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 
-class TraitsTest extends BaseTestCase
+final class TraitsTest extends BaseTestCase
 {
     #[Test]
     public function it_can_check_if_dummy_model_with_trait_has_traits(): void
