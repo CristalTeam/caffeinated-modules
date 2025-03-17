@@ -19,7 +19,7 @@ class CommandModuleEnableTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_enable_an_disabled_module()
+    public function it_can_enable_an_disabled_module(): void
     {
         $this->artisan('module:disable', ['slug' => 'enable']);
 
@@ -35,7 +35,7 @@ class CommandModuleEnableTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_disable_a_enabled_module()
+    public function it_can_disable_a_enabled_module(): void
     {
         $this->artisan('module:enable', ['slug' => 'enable']);
 

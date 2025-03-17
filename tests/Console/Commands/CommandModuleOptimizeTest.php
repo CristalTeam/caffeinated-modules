@@ -19,7 +19,7 @@ class CommandModuleOptimizeTest extends BaseTestCase
     }
 
     #[Test]
-    public function it_can_optimize_a_module()
+    public function it_can_optimize_a_module(): void
     {
         $before = file_get_contents(storage_path('app/modules/app.json'));
 
