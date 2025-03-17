@@ -12,7 +12,7 @@ class LocationsTest extends BaseTestCase
      */
     protected $repository;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

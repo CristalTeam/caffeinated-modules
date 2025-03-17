@@ -13,7 +13,7 @@ class RepositoryTest extends BaseTestCase
      */
     protected $repository;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -291,7 +291,7 @@ class RepositoryTest extends BaseTestCase
         $manifest = $this->repository->getManifest('unknown');
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('repositorymod1'));
 

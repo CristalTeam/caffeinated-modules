@@ -11,7 +11,7 @@ class CommandMakeControllerTest extends BaseTestCase
 
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -52,7 +52,7 @@ class CommandMakeControllerTest extends BaseTestCase
         $this->assertMatchesSnapshot($file);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('controller'));
 

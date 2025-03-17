@@ -11,7 +11,7 @@ class CommandMakeMigrationTest extends BaseTestCase
 
     protected $finder;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -85,7 +85,7 @@ class CommandMakeMigrationTest extends BaseTestCase
         $this->assertMatchesSnapshot($migration);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finder->deleteDirectory(module_path('migration'));
 
