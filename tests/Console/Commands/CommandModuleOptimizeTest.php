@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Commands;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
 class CommandModuleOptimizeTest extends BaseTestCase
@@ -17,7 +18,7 @@ class CommandModuleOptimizeTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'optimize', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_optimize_a_module()
     {
         $before = file_get_contents(storage_path('app/modules/app.json'));

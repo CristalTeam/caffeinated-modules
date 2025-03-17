@@ -2,9 +2,11 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TraitsTest extends BaseTestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_check_if_dummy_model_with_trait_has_traits()
     {
         $with = new DummyModelWithTraits;
@@ -14,7 +16,7 @@ class TraitsTest extends BaseTestCase
         $this->assertTrue(method_exists($with, 'getMigrationPath'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_if_dummy_model_without_traits_has_no_traits()
     {
         $without = new DummyModelWithoutTraits;
