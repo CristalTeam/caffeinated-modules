@@ -24,10 +24,8 @@ final class MiddlewareTest extends BaseTestCase
 
         $this->app['router']->group(
             ['middleware' => [\Illuminate\Session\Middleware\StartSession::class, 'module:controller']],
-            function () {
-                $this->app['router']->get('has-invalid-identify-middleware', function () {
-                    return session()->get('module');
-                });
+            function (): void {
+                $this->app['router']->get('has-invalid-identify-middleware', fn() => session()->get('module'));
             }
         );
 
@@ -47,9 +45,7 @@ final class MiddlewareTest extends BaseTestCase
     #[Test]
     public function it_can_check_if_it_has_no_identify_module_middleware(): void
     {
-        $this->app['router']->get('has-no-identify-middleware', function () {
-            return session()->get('module');
-        });
+        $this->app['router']->get('has-no-identify-middleware', fn() => session()->get('module'));
 
         $content = $this->call('get', 'has-no-identify-middleware')->getContent();
 
@@ -65,10 +61,8 @@ final class MiddlewareTest extends BaseTestCase
 
         $this->app['router']->group(
             ['middleware' => [\Illuminate\Session\Middleware\StartSession::class, 'module:middleware']],
-            function () {
-                $this->app['router']->get('has-valid-identify-middleware', function () {
-                    return session()->get('module');
-                });
+            function (): void {
+                $this->app['router']->get('has-valid-identify-middleware', fn() => session()->get('module'));
             }
         );
 

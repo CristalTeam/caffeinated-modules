@@ -86,9 +86,9 @@ class ModuleListCommand extends Command
         return [
             '#'           => $module['order'],
             'location'    => $repository->location,
-            'name'        => isset($module['name']) ? $module['name'] : '',
+            'name'        => $module['name'] ?? '',
             'slug'        => $module['slug'],
-            'description' => isset($module['description']) ? $module['description'] : '',
+            'description' => $module['description'] ?? '',
             'status'      => (modules($repository->location)->isEnabled($module['slug'])) ? 'Enabled' : 'Disabled',
         ];
     }

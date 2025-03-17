@@ -218,7 +218,7 @@ final class RepositoryTest extends BaseTestCase
     {
         $this->assertCount(3, $this->repository->slugs());
 
-        $this->repository->slugs()->each(function ($key, $value) {
+        $this->repository->slugs()->each(function ($key, $value): void {
             $this->assertSame('repositorymod' . ($value + 1), $key);
         });
     }

@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'web',
             'namespace'  => $this->namespace,
-        ], function ($router) {
+        ], function ($router): void {
             require module_path('DummySlug', 'RoutesMapping/web.php', 'DummyLocation');
         });
     }
@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'auth:api',
             'namespace'  => $this->namespace,
             'prefix'     => 'api',
-        ], function ($router) {
+        ], function ($router): void {
             require module_path('DummySlug', 'RoutesMapping/api.php', 'DummyLocation');
         });
     }

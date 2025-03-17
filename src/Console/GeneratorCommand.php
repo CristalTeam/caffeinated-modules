@@ -20,7 +20,7 @@ abstract class GeneratorCommand extends LaravelGeneratorCommand
         try {
             $location = $this->option('location') ?: config('modules.default_location');
         }
-        catch (\Exception $e) {
+        catch (\Exception) {
             $location = config('modules.default_location');
         }
 
@@ -49,7 +49,7 @@ abstract class GeneratorCommand extends LaravelGeneratorCommand
         try {
             $location = $this->option('location') ?: config('modules.default_location');
         }
-        catch (\Exception $e) {
+        catch (\Exception) {
             $location = config('modules.default_location');
         }
 
