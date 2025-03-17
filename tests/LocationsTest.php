@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
@@ -42,7 +43,7 @@ class LocationsTest extends BaseTestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_module_in_non_default_location()
     {
         $this->artisan('make:module', [
@@ -56,7 +57,7 @@ class LocationsTest extends BaseTestCase
         $this->assertFileDoesNotExist(base_path('modules/MyPlugin/module.json'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_disable_and_enable_module_in_non_default_location()
     {
         $this->artisan('make:module', [
@@ -87,7 +88,7 @@ class LocationsTest extends BaseTestCase
         $this->assertTrue($this->repository->isEnabled('foo-bar'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_work_with_migrations_in_non_default_location()
     {
         $this->artisan('make:module', [
@@ -130,7 +131,7 @@ class LocationsTest extends BaseTestCase
         $this->assertFalse(Schema::hasTable('bar_biz_plugin'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_leave_default_location_alone_when_working_with_migrations_in_non_default_location()
     {
         // create a module for the *default* location to make
@@ -190,7 +191,7 @@ class LocationsTest extends BaseTestCase
         $this->assertTrue(Schema::hasTable('default_location_table'));
     }
 
-    /** @test */
+    #[Test]
     public function it_leaves_non_default_locations_alone_when_working_with_default_location()
     {
         $this->artisan('make:module', [

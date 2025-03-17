@@ -2,6 +2,8 @@
 
 namespace Caffeinated\Modules\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class BladeTest extends BaseTestCase
 {
     protected $finder;
@@ -15,7 +17,7 @@ class BladeTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'blade', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_module_if_module_exists_and_is_enabled()
     {
         $this->artisan('module:enable', ['slug' => 'blade']);
@@ -23,13 +25,13 @@ class BladeTest extends BaseTestCase
         $this->assertEquals('has module', $this->renderView('module', ['module' => 'blade']));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_no_module_if_module_dont_exists()
     {
         $this->assertEquals('no module', $this->renderView('module', ['module' => 'dontexists']));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_no_module_if_module_exists_but_is_not_enabled()
     {
         $this->artisan('module:disable', ['slug' => 'blade']);

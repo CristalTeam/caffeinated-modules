@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Commands;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
 class CommandModuleMigrateRefreshTest extends BaseTestCase
@@ -17,7 +18,7 @@ class CommandModuleMigrateRefreshTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'migrate-refresh', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_migrate_refresh_a_module()
     {
         $this->assertFalse(\Schema::hasTable('CustomCreateMigrationRefreshTable'));

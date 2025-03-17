@@ -2,6 +2,7 @@
 
 namespace Caffeinated\Modules\Tests\Commands\Commands;
 
+use PHPUnit\Framework\Attributes\Test;
 use Caffeinated\Modules\Tests\BaseTestCase;
 
 class CommandModuleMigrateResetTest extends BaseTestCase
@@ -17,7 +18,7 @@ class CommandModuleMigrateResetTest extends BaseTestCase
         $this->artisan('make:module', ['slug' => 'migrate-reset', '--quick' => 'quick']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_migrate_reset_a_module()
     {
         $this->assertFalse(\Schema::hasTable('CustomCreateMigrationResetTable'));
