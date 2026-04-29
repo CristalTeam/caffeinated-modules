@@ -17,7 +17,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "illuminate/support": "^v12.0"
+        "illuminate/support": "^v12.0|^v13.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
